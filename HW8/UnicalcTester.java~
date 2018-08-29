@@ -1,0 +1,79 @@
+/* Name: Jeffrey Phung, Sonny Tang
+ * Login: cs12sfw, cs12shb
+ * PID: A11264719, A11370127
+ * Date: 5/27/2014
+ * 
+ * 
+ */
+
+import junit.framework.*;
+
+/** Tester for the Unicalc class.
+ * 
+ */ 
+public class UnicalcTester extends TestCase
+{
+	Unicalc unicalc;
+	
+	public void setUp(){
+		unicalc = new Unicalc();
+	}
+
+	public void testS()
+	{
+		unicalc.tokenize("100 meters");
+		assertEquals("Product(Value(10.0),Value(1.0 meters))",unicalc.parse().toString());
+		unicalc.tokenize("# 100 smoot");
+		assertEquals("Normalize(Product(Value(100.0),Value(1.0 smoot)))",unicalc.parse().toString());
+	}
+
+	public void testL()
+	{
+		unicalc.tokenize("494 JUNITS");
+		assertEquals("Product(Value(494.0),Value(1.0 JUNITS))",unicalc.parse().toString());
+		unicalc.tokenize("94 meters");
+		assertEquals("Product(Value(94.0),Value(1.0 meters))",unicalc.parse().toString());
+	}
+
+	public void testE()
+	{
+		unicalc.tokenize("3 + 4");
+		assertEquals("Sum(Value(3.0),Value(4.0))",unicalc.parse().toString());
+		unicalc.tokenize("35 meters - 3 meters");
+		assertEquals("Difference(Product(Value(35.0),Value(1.0 meters)),Product(Value(3.0),Value(1.0 meters)))",unicalc.parse().toString());
+	}
+
+	public void testP()
+	{
+		unicalc.tokenize("3 * 4");
+		assertEquals("Product(Value(3.0),Value(4.0))",unicalc.parse().toString());
+		unicalc.tokenize("99 meters/9 hrs");
+		assertEquals("Quotient(Product(Value(99.0),Value(1.0 meters)),Product(Value(9.0),Value(1.0 hrs)))",unicalc.parse().toString());
+	}
+
+	public void testK()
+	{
+		unicalc.tokenize("--4");
+		assertEquals("Negation(Negation(Value(4.0)))",unicalc.parse().toString());
+		unicalc.tokenize("-(-3)");
+		assertEquals("Negation(Negation(Value(3.0)))",unicalc.parse().toString());
+	}
+
+	public void testQ()
+	{
+		unicalc.tokenize("8 8");
+		assertEquals("Product(Value(8.0),Value(8.0))",unicalc.parse().toString());
+		unicalc.tokenize("9");
+		assertEquals("Value(9.0)",unicalc.parse().toString());
+		
+	}
+
+	public void testR()
+	{
+		unicalc.tokenize("3^3");
+		assertEquals("Power(Value(3.0),3)",unicalc.parse().toString());
+		unicalc.tokenize("3 meters ^ 2");
+		assertEquals("Product(Value(3.0),Power(Value(1.0 meters),2))",unicalc.parse().toString());
+	}
+
+}

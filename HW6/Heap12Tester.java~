@@ -1,0 +1,170 @@
+import junit.framework.*;
+import java.util.*;
+/**
+ * Son Tang
+ * */
+public class Heap12Tester extends TestCase
+{
+  /* Tests to see if constructors work. */
+  public void testConstructor()
+  {
+    Heap12<Integer> heap = new Heap12<Integer>();
+    Heap12<Integer> heap2 = new Heap12<Integer>(true);
+    Heap12<Integer> heap3 = new Heap12<Integer>(3,false);
+  }
+  
+  /* Tests to see if Minheap works */
+  public void testMinHeap()
+  {
+    Heap12<Integer> heap = new Heap12<Integer>(false);
+    heap.offer(new Integer(2));
+    heap.offer(new Integer(7));
+    heap.offer(new Integer(4));
+    assertEquals(new Integer(2), heap.poll());
+    assertEquals(new Integer(4), heap.poll());
+    assertEquals(new Integer(7), heap.poll());
+  }
+  
+  /* Tests to see if Maxheap is correct. */
+  public void testMaxHeap()
+  {
+    Heap12<Integer> heap = new Heap12<Integer>(true);
+    heap.offer(new Integer(3));
+    heap.offer(new Integer(2));
+    heap.offer(new Integer(7));
+    assertEquals(new Integer(7), heap.poll());
+    assertEquals(new Integer(3), heap.poll());
+    assertEquals(new Integer(2), heap.poll());
+  }
+  
+  /* Tests copy constructor */
+  public void testCopyConstructor()
+  {
+    Heap12<Integer> heap = new Heap12<Integer>();
+    heap.offer(new Integer(7));
+    heap.offer(new Integer(5));
+    heap.offer(new Integer(6));    
+    heap.offer(new Integer(8));
+    heap.offer(new Integer(4));
+    heap.offer(new Integer(3));
+    heap.offer(new Integer(4));
+    heap.offer(new Integer(1));
+    heap.offer(new Integer(-1));
+    Heap12<Integer> heap2 = new Heap12<Integer>(heap);
+    assertEquals(9, heap.size());
+    assertEquals(9, heap2.size());
+    assertEquals(new Integer(-1), heap2.poll());
+    assertEquals(new Integer(1), heap2.poll());    
+    assertEquals(new Integer(-1), heap.poll());
+    assertEquals(7, heap2.size());
+    
+    Heap12<Integer> heap3 = new Heap12<Integer>(true);
+    heap3.offer(new Integer(7));
+    heap3.offer(new Integer(5));
+    heap3.offer(new Integer(6));
+    Heap12<Integer> heap4 = new Heap12<Integer>(heap3);
+    assertEquals(3, heap4.size());
+    assertEquals(new Integer(7), heap4.poll());
+    assertEquals(new Integer(6), heap4.poll());
+    assertEquals(new Integer(7), heap3.poll());
+  }
+  
+  /* Tests the iterator */
+  public void testIterator()
+  {
+    Heap12<Integer> heap = new Heap12<Integer>();
+    Iterator<Integer> hIter = heap.iterator();
+    assertEquals(false, hIter.hasNext());
+    heap.offer(new Integer(5));
+    assertEquals(true, hIter.hasNext());
+    assertEquals(true, hIter.hasNext());
+    heap.poll();
+    assertEquals(false, hIter.hasNext());
+    heap.offer(new Integer(7));
+    heap.offer(new Integer(5));
+    heap.offer(new Integer(6));
+    assertEquals(new Integer(5), hIter.next());
+    assertEquals(new Integer(7), hIter.next());
+    assertEquals(new Integer(6), hIter.next());
+    
+    assertEquals(new Integer(7), hIter.hasNext());
+  }
+  
+  /* Tests the offer method. */
+  public void testOffer()
+  {
+    Heap12<Integer> heap = new Heap12<Integer>();
+    heap.offer(new Integer(6));
+    heap.offer(new Integer(5));
+    assertEquals(2, heap.size());
+    heap.poll();
+    assertEquals(1, heap.size());
+    assertEquals(new Integer(6), heap.poll());
+    
+    Heap12<Integer> heap2 = new Heap12<Integer>(1, false);
+    heap2.offer(new Integer(6));
+    heap2.offer(new Integer(5));    
+    heap2.offer(new Integer(3));    
+    heap2.offer(new Integer(4));
+    assertEquals(4, heap2.size());
+    assertEquals(new Integer(3), heap2.poll());
+    assertEquals(new Integer(4), heap2.poll());
+    assertEquals(new Integer(5), heap2.poll());
+    assertEquals(new Integer(6), heap2.poll());
+  }
+  
+  /* Tests the peek method. */
+  public void testPeek()
+  {       
+    Heap12<Integer> heap = new Heap12<Integer>();
+    heap.offer(new Integer(7));
+    heap.offer(new Integer(5));
+    heap.offer(new Integer(6));
+    assertEquals(new Integer(5), heap.peek());
+    assertEquals(new Integer(5), heap.peek());
+    
+    Heap12<Integer> heap2 = new Heap12<Integer>(true);
+    heap2.offer(new Integer(8));
+    heap2.offer(new Integer(5));
+    heap2.offer(new Integer(6));
+    assertEquals(new Integer(8), heap2.peek());
+  }
+  
+  /* Tests the poll method. */
+  public void testPoll()
+  {
+    Heap12<Integer> heap = new Heap12<Integer>();
+    heap.offer(new Integer(5));
+    heap.offer(new Integer(7));
+    heap.offer(new Integer(6));
+    assertEquals(new Integer(5), heap.poll());
+    assertEquals(new Integer(6), heap.poll());
+    assertEquals(new Integer(7), heap.poll());
+    Heap12<Integer> heap2 = new Heap12<Integer>(true);
+    heap2.offer(new Integer(5));
+    heap2.offer(new Integer(10));
+    heap2.offer(new Integer(8));        
+    heap2.offer(new Integer(14));
+    assertEquals(new Integer(14), heap2.poll());
+    assertEquals(new Integer(10), heap2.poll());
+    assertEquals(new Integer(8), heap2.poll());
+    assertEquals(new Integer(5), heap2.poll());
+    assertEquals(null, heap2.poll());
+    assertEquals(null, heap2.poll());
+  }
+  
+  /* Tests the size method. */
+  public void testSize()
+  {
+    Heap12<Integer> heap = new Heap12<Integer>();
+    heap.offer(new Integer(3));
+    heap.offer(new Integer(2));
+    assertEquals(2, heap.size());
+    heap.poll();
+    assertEquals(1, heap.size());
+    heap.poll();
+    assertEquals(0, heap.size());
+    heap.poll();
+    assertEquals(0, heap.size()); 
+  }
+}

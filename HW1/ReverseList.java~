@@ -1,0 +1,51 @@
+/**
+ * NAME: Son Tang <br>
+ * ID: A11370127 <br>
+ * LOGIN: cs12shb <br>
+ * */
+import java.io.*;
+import java.util.*;
+
+public class ReverseList
+{
+  public ReverseList() 
+  {
+    String fileName = new Scanner(System.in).next();
+    if (fileName.length() == 0)
+    {
+      System.out.println("Usage Statement");
+    }
+    else
+    {
+      try
+      {
+        File inFile = new File(fileName);
+        Scanner input = new Scanner(inFile);
+        LinkedList<String> stringArray = new LinkedList<String>();
+        while(input.hasNext())
+        {
+          stringArray.add(input.nextLine());
+        }
+        for(int i = stringArray.size() - 1; i >= 0; i--)
+        {
+          System.out.println(stringArray.get(i));
+        }
+      }
+      catch(FileNotFoundException ex)
+      {
+        System.out.println("File Not Found");
+      }
+      
+    }
+  }
+  
+  public static void main (String[] args) throws IOException
+  {
+    ReverseList ra = new ReverseList();
+  }
+  
+}
+
+
+
+

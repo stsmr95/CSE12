@@ -1,0 +1,29 @@
+Q:Is it bigger than a breadbox?
+Q:Is it edible?
+Q:Can you store text in it?
+Q:Can you wear it?
+Q:can you store food in it?
+A:a bottle
+A:a bowl
+Q:Do you put it on your head?
+A:shoes
+A:a hat
+Q:Does it have a cover?
+A:a paper
+A:a book
+Q:is it a fruit?
+A:spam
+A:a banana
+Q:Is it a person?
+Q:Can you watch shows on it?
+Q:Can you ride on it?
+Q:Does it use fire?
+A:a microwave
+A:a stove
+Q:Does it use gas?
+A:a bike
+A:a car
+Q:Can you surf the internet on it?
+A:a television
+A:a computer
+A:a computer scientist

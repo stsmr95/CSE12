@@ -1,0 +1,117 @@
+CSE 12 Homework 5
+Son Tang
+A11370127
+Section B00
+May 6, 2014
+
+Part I.
+I.   Bubble
+	A. java -Xint SortTimer random-strings.txt 0 1000 500 5
+	   I chose this parameter because it would take too long to use the normal
+	   parameters to scan the values. 
+	B. Document: random-strings.txt
+	 sortAlg: 0
+	=======================================
+	 1:    1000 words in     928 milliseconds
+  	 2:    1500 words in    2072 milliseconds
+ 	 3:    2000 words in    3759 milliseconds
+ 	 4:    2500 words in    5897 milliseconds
+ 	 5:    3000 words in    8469 milliseconds
+	C.O(n^2). The increase in time rises exponentially each time it increments. It can 
+	  be seen in all of the points— increasing by 1000, 2000, and then 3000.II.  Insertion
+	A. java -Xint SortTimer random-strings.txt 1
+	   I used the default parameter because it did not take too much time and is 	
+	   fairly accurate.
+	B. Document: random-strings.txt
+ 	 sortAlg: 1
+	=======================================
+ 	 1:    5000 words in      74 milliseconds
+  	 2:   10000 words in     193 milliseconds
+  	 3:   15000 words in     270 milliseconds
+  	 4:   20000 words in     359 milliseconds
+  	 5:   25000 words in     486 milliseconds
+	C.O(n). The increase in time rises linearly, increasing by ~80 ms each time.III. Merge
+	A. java -Xint SortTimer random-strings.txt 2
+	   I used the default parameter because it did not take too much time and is 	
+	   fairly accurate.
+	B. Document: random-strings.txt
+	 sortAlg: 2
+	=======================================
+  	 1:    5000 words in     162 milliseconds
+  	 2:   10000 words in     417 milliseconds
+  	 3:   15000 words in     561 milliseconds
+  	 4:   20000 words in     759 milliseconds
+  	 5:   25000 words in     963 milliseconds
+	C.O(n). At almost any point, the time increase is consistently ~300 ms.
+IV.  Quick
+	A. java -Xint SortTimer random-strings.txt 3
+	   I used the default parameter because it did not take too much time and is 	
+	   fairly accurate.
+	B. Document: random-strings.txt
+ 	 sortAlg: 3
+	=======================================
+  	 1:    5000 words in      94 milliseconds
+  	 2:   10000 words in     205 milliseconds
+  	 3:   15000 words in     344 milliseconds
+  	 4:   20000 words in     551 milliseconds
+  	 5:   25000 words in     550 milliseconds
+	C.O(n). In the middle three points, the increase in time is relatively linear.
+
+Part II.
+I.   Bubble
+	A. java -Xint SortTimer random-strings-sorted.txt 0
+	   I used the default parameter because it did not take too much time and is 	
+	   fairly accurate.
+	B. Document: random-strings-sorted.txt
+	 sortAlg: 0
+	=======================================
+ 	 1:    5000 words in       6 milliseconds
+ 	 2:   10000 words in      12 milliseconds
+ 	 3:   15000 words in      18 milliseconds
+ 	 4:   20000 words in      24 milliseconds
+ 	 5:   25000 words in      31 milliseconds
+	C.O(n). The increase in time is a flat 6 ms each time.II.  Insertion
+	A. java -Xint SortTimer random-strings-sorted.txt 1
+	   I used the default parameter because it did not take too much time and is 		
+           fairly accurate.
+	B. Document: random-strings-sorted.txt
+	 sortAlg: 1
+	=======================================
+	  1:    5000 words in      14 milliseconds
+	  2:   10000 words in      30 milliseconds
+	  3:   15000 words in      49 milliseconds
+	  4:   20000 words in      60 milliseconds
+	  5:   25000 words in      74 milliseconds
+	C.O(n). The increase in time at every point is relatively linear with ~15 ms 	
+	  increase.III. Merge
+	A. java -Xint SortTimer random-strings-sorted.txt 2
+	   I used the default parameter because it did not take too much time and is 	
+	   fairly accurate.
+	B. Document: random-strings-sorted.txt
+	 sortAlg: 2
+	=======================================
+	  1:    5000 words in     136 milliseconds
+	  2:   10000 words in     292 milliseconds
+	  3:   15000 words in     516 milliseconds
+	  4:   20000 words in     630 milliseconds
+	  5:   25000 words in     834 milliseconds
+	C.O(n). The time increase is inconsistent, but is fairly linear.
+IV.  Quick
+	A. java -Xint SortTimer random-strings-sorted.txt 3 1000 500 5
+	   I chose this parameter because it would take too long to use the normal
+	   parameters to scan the values. 
+	B. Document: random-strings-sorted.txt
+	 sortAlg: 3
+	=======================================
+	  1:    1000 words in     437 milliseconds
+	  2:    1500 words in     874 milliseconds
+	  3:    2000 words in    1617 milliseconds
+	  4:    2500 words in    2512 milliseconds
+	  5:    3000 words in    3677 milliseconds
+	C.O(n^2). In all five points, the time increase is exponential, increasing 
+	  form 400ms/500 words to over 1000ms/500 words.
+
+Part III. I noticed that the various algorithms in the pre-sorted case are generally faster than those in the unsorted case. I think it is because it is closer to the best case scenario. Some algorithms also benefit from not having to move the elements in the sorted case.
+
+Part 3:
+binSearch is used to find where in the list to insert the target object. In the modified Insertion Sort, it is used to return the index where the object from the original list should be added into the new ArrayList. The space complexity of the classic insertion sort is O(n) while the space complexity of the modified insertion sort is O(2n).

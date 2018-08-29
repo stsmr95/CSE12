@@ -1,0 +1,43 @@
+Mahou Sensou
+Pupa
+Hamatora the animation
+neppu kairiku
+
+
+
+/** <b> 
+  * Version:    </b><p style="text-indent: 1em;"> 
+  * 1.0         </p><p><b> 
+  * Author:     </b><p style="text-indent: 1em;"> 
+  * Son Tang    </p>
+  * */
+
+
+/**
+ * @version 1.0
+ * @author Son Tang
+ * */
+
+ public static void main(String[] args)
+ {
+   CounterTest ct = new CounterTest();
+   ct.testDefaultValueOfCounterIsZero();
+   ct.testIncrement();
+   ct.testMultipleIncrements();
+   ct.testReset();
+   ct.testDecrement();
+ }
+
+
+java TestRunner CounterTest
+
+
+
+Picture pic1 = new Picture(FileChooser.pickAFile());
+
+System.out.println(String.valueOf(stringArray.get(i)));
+
+
+System.out.println(String.valueOf(stringArray[i]));
+
+input mismatch, file not found, exception,

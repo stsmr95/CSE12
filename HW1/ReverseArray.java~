@@ -1,0 +1,59 @@
+/**
+ * NAME: Son Tang <br>
+ * ID: A11370127 <br>
+ * LOGIN: cs12shb <br>
+ * */
+import java.io.*;
+import java.util.*;
+
+public class ReverseArray
+{
+  public ReverseArray(String fileName) 
+  {
+  //  String fileName = new Scanner(System.in).nextLine();
+    if (fileName.length() == 0)
+    {
+      System.out.println("Usage Statement");
+    }
+    else
+    {
+      try
+      {
+        File inFile = new File(fileName);
+        Scanner numScanner = new Scanner(inFile);
+        Scanner input = new Scanner(inFile);
+        int numLines = 0;
+        while(numScanner.hasNext())
+        {
+          numScanner.nextLine();
+          numLines++;
+        }
+        String[] stringArray = new String[numLines];
+        int index = 0;
+        for(int i = stringArray.length - 1 ; i >= 0; i--)
+        {
+          stringArray[i] = input.nextLine(); 
+        }
+        for(int u = 0; u < stringArray.length; u++)
+        {
+          System.out.println(stringArray[u]);
+        } 
+      }
+      catch(FileNotFoundException ex)
+      {
+        System.out.println("File Not Found");
+      }
+      
+    }
+  }
+  
+  public static void main (String[] args) throws IOException
+  {
+    ReverseArray ra = new ReverseArray(new Scanner(System.in).nextLine());
+  }
+  
+}
+
+
+
+

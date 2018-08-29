@@ -1,0 +1,7 @@
+Q:Is it bigger than a breadbox?
+Q:Is it sweet?
+A:spam
+Q:Is it hard?
+A:soda
+A:It is candy.
+A:a computer scientist

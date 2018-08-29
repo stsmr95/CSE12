@@ -1,0 +1,316 @@
+import java.util.ArrayList;
+import java.util.AbstractQueue;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+/** NAME: Son Tang
+ * ID: A11370127
+ * LOGIN: cs12shb
+ * SECTION: B00
+ * DATE: May 15,2014
+ * 
+ * Heap12 class that implements an unbounded array-backed heap structure and is
+ * an extension of the Java Collections AbstractQueue class 
+ * <p>
+ * The elements of the heap are ordered according to their natural 
+ * ordering,  Heap12 does not permit null elements. 
+ * The top of this heap is the minimal or maximal element (called min/max)  
+ * with respect to the specified natural ordering.  
+ * If multiple elements are tied for min/max value, the top is one of 
+ * those elements -- ties are broken arbitrarily. 
+ * The queue retrieval operations poll and  peek 
+ * access the element at the top of the heap.
+ * <p>
+ * A Heap12 is unbounded, but has an internal capacity governing the size of 
+ * an array used to store the elements on the queue. It is always at least as 
+ * large as the queue size. As elements are added to a Heap12, its capacity 
+ * grows automatically. The details of the growth policy are not specified.
+ * <p>
+ * This class and its iterator implements the optional methods of the 
+ * Iterator interface (including remove()). The Iterator provided in method 
+ * iterator() is not guaranteed to traverse the elements of the Heap12 in 
+ * any particular order. 
+ * <p>
+ * Note that this implementation is not synchronized. Multiple threads 
+ * should not access a Heap12 instance concurrently if any of the 
+ * threads modifies the Heap12. 
+ */
+public class Heap12<E extends Comparable <? super E>> extends 
+ AbstractQueue<E> 
+{
+  private int size;
+  private ArrayList<E> arrayList;
+  private boolean isMax;
+  private int cap;
+ /** O-argument constructor. Creates and empty Heap12 with unspecified
+   *  initial capacity, and is a min-heap 
+   */ 
+ public Heap12()
+ {
+   arrayList = new ArrayList<E>(5);
+   size = 0;
+   isMax = false;
+   cap = 5;
+ }
+ 
+ /** 
+  * Constructor to build a min or max heap
+  * @param isMaxHeap  if true, this is a max-heap, else a min-heap 
+  */ 
+ public Heap12( boolean isMaxHeap)
+ {
+   arrayList = new ArrayList<E>(5);
+   size = 0;
+   isMax = isMaxHeap;
+   cap = 5;
+ }
+
+ /** 
+   * Constructor to build a with specified initial capacity 
+   *  min or max heap
+   * @param capacity   initial capacity of the heap. 
+   * @param isMaxHeap  if true, this is a max-heap, else a min-heap 
+   */ 
+ public Heap12( int capacity, boolean isMaxHeap)
+ {
+   arrayList = new ArrayList<E>(capacity);
+   size = 0;
+   isMax = isMaxHeap;
+   cap = capacity;
+ }
+ /** Copy constructor. Creates Heap12 with a deep copy of the argument
+   * @param toCopy      the heap that should be copied
+   */
+ public Heap12 (Heap12<E> toCopy)
+ {
+   arrayList = new ArrayList<E>(toCopy.getCap());
+   isMax = toCopy.getIsMax();
+   size = toCopy.size();
+   cap = toCopy.getCap();
+   ArrayList<E> copyList = toCopy.getAL();
+   for(int i = 0; i < copyList.size(); i++)
+   {
+     arrayList.add(copyList.get(i));
+   }
+ }
+
+ private boolean getIsMax()
+ {
+   return this.isMax;
+ }
+ 
+ private int getCap()
+ {
+   return this.cap;
+ }
+ 
+  private ArrayList<E> getAL()
+  {
+    return this.arrayList;
+  }
+
+ /* The following are defined "stub" methods that provide degenerate
+  * implementations of methods defined as abstract in parent classes.
+  * These need to be coded properly for Heap12 to function correctly
+  */
+
+ /** Size of the heap
+   * @return the number of elements stored in the heap
+ */
+ public int size()
+ {
+  return size; 
+ }
+
+ /** 
+   * @return an Iterator for the heap 
+ */
+ public Iterator<E> iterator()
+ {
+  return new Heap12Iterator(); 
+ }
+
+ /** peek - see AbstractQueue for details 
+   * 
+   * @return Element at top of heap. Do not remove 
+ */
+ public E peek()
+ {
+        return arrayList.get(0);
+ }
+ /** poll - see AbstractQueue for details 
+   * @return Element at top of heap. And remove it from the heap. 
+   *  return <tt>null</tt> if the heap is empty
+ */
+ public E poll()
+ {
+   if(size > 0)
+   {
+     E retElement = arrayList.get(0);
+     arrayList.set(0, arrayList.get(size() - 1));
+     arrayList.remove(size() - 1);
+     size--;
+     trickleDown(0);
+     return retElement;
+   }
+   return null;
+ }
+ /** offer -- see AbstractQueue for details
+  * insert an element in the heap
+  * @return true
+  * @throws NullPointerException 
+  *  if the specified element is null 
+  */
+ public boolean offer (E e) throws NullPointerException
+ {
+   if(e == null)
+   {
+     throw new NullPointerException();
+   }
+   if(size() < cap)
+   {
+     arrayList.add(e);
+     size++;
+     bubbleUp(size() - 1);
+     return true;
+   }
+   else                                            //doubles the cap by creating a new array.
+   {
+     cap = cap*2;
+     ArrayList<E> newArray = new ArrayList<E>(cap);
+     for(int i = 0; i < size(); i++)
+     {
+       newArray.add(arrayList.get(i));
+     }
+     arrayList = newArray;
+     offer(e);
+     return true;
+   }
+ }
+
+    /* ------ Private Helper Methods ----
+     *  DEFINE YOUR HELPER METHODS HERE
+     */
+
+    /** Inner Class for an Iterator **/
+    /* stub routines */
+
+ private void bubbleUp(int index)
+ {
+   if(index == 0)                                                         //Base Case
+     return;
+   if(isMax == false)                                                      //Maxheap
+   {
+     if(arrayList.get(index).compareTo(arrayList.get((index-1)/2)) >= 0)
+       return;
+     else
+     {
+       E tempElement = arrayList.get((index-1)/2);
+       arrayList.set((index-1)/2, arrayList.get(index));
+       arrayList.set(index, tempElement);
+       bubbleUp((index-1)/2);
+     }
+   }
+   else                                                                   //Minheap
+   {
+     if(arrayList.get(index).compareTo(arrayList.get((index-1)/2)) <= 0)
+       return;
+     else
+     {
+       E tempElement = arrayList.get((index-1)/2);
+       arrayList.set((index-1)/2, arrayList.get(index));
+       arrayList.set(index, tempElement);
+       bubbleUp((index-1)/2);
+     }
+   }
+ }
+ 
+ public void trickleDown(int index)
+ {
+   if(isMax == true)                                               //if Maxheap
+   {
+     if((2*index+1) < size() && arrayList.get((2*index)+1) != null && 
+           arrayList.get((2*index)+1).compareTo(arrayList.get(index)) > 0)
+     {                                                              
+       E tempElement = arrayList.get(index);
+       if( (2*index)+2 < size() && arrayList.get((2*index)+2).compareTo(arrayList.get((2*index)+1)) > 0)
+       {
+       arrayList.set(index, arrayList.get((2*index)+2));
+       arrayList.set((2*index)+2, tempElement);
+       index = (2*index)+2;
+       }
+       else
+       {
+       arrayList.set(index, arrayList.get((2*index)+1));
+       arrayList.set((2*index)+1, tempElement);
+       index = (2*index)+1;
+       }
+     }
+   }
+   if(isMax == false)                                                          //if Minheap
+   {
+     while((2*index+1) < size() && arrayList.get((2*index)+1) != null && 
+           arrayList.get((2*index)+1).compareTo(arrayList.get(index)) < 0)
+     {                                                              
+       E tempElement = arrayList.get(index);
+       if( (2*index)+2 < size() && arrayList.get((2*index)+2).compareTo(arrayList.get((2*index)+1)) < 0)
+       {
+       arrayList.set(index, arrayList.get((2*index)+2));
+       arrayList.set((2*index)+2, tempElement);
+       index = (2*index)+2;
+       }
+       else
+       {
+       arrayList.set(index, arrayList.get((2*index)+1));
+       arrayList.set((2*index)+1, tempElement);
+       index = (2*index)+1;
+       }
+     }
+   }
+ }
+ 
+ private class Heap12Iterator implements Iterator<E>
+ {
+   int index;
+        private Heap12Iterator()
+        {
+          index = 0;
+        }
+
+        /* hasNext() to implement the Iterator<E> interface */
+  public boolean hasNext()
+  {
+    
+    if(index < size() && arrayList.get(index) != null)
+      return true;
+    else
+      return false; 
+  }
+
+        /* next() to implement the Iterator<E> interface */
+  public E next() throws NoSuchElementException
+  {
+    E retElement = null;
+    if(hasNext() == true)
+    {
+      retElement = arrayList.get(index);
+      index++;
+    }
+    else
+    { throw new NoSuchElementException(); }
+    return retElement;
+  }
+        /* remove() to implement the Iterator<E> interface */
+  public void remove() throws IllegalStateException
+  {
+    if(size() <= 0)
+    {
+      throw new IllegalStateException();
+    }
+    else
+    {
+      poll();
+    }
+  } 
+    }
+} 
+// vim:ts=4:sw=4:tw=78:et

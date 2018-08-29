@@ -1,0 +1,151 @@
+CSE 12 Homework 3
+Son Tang
+A11370127
+Section B00
+April 22, 2014
+
+Part 1A
+1. True
+2. True
+3. False
+4. False
+5. False
+6. True
+7. False
+8. True
+9. True
+10. False
+11. True
+12. True
+13. True
+14. True
+15. False
+16. True
+17. False
+18. True
+
+Part 1B
+1. Running time: O(n)
+Explanation: There is a single loop that runs n times. Each time the loop runs, it executes 1 instruction, so the total number of instructions executed is 1 * n = O(n).
+
+2. Running time: O(n)
+Explanation: There is a single loop that runs (1/2)n-1 times. Each time the loop runs, it executes 1 instruction, so the total number of instructions executed is 1 * ((1/2)n-1) = O(n).
+
+3. Running time: O(n^2)
+Explanation: There is a nested loop that runs n times twice. Each time the loop runs, it executes 1 instruction. Since there is a loop within a loop, the total number of instructions executed is n * n = O(n^2).
+
+4. Running time: O(n)
+Explanation: There are two loops that run n times each. Each time any of the loops run, it executes 1 instruction. Since there are two loops, the total number of instructions executed is 2n = O(n).
+
+5. Running time: O(n)
+Explanation: There is a single loop that runs 2n times. Each time the loop runs, it executes 1 instruction, so the total number of instructions executed is 2 * n = O(n).
+ 
+6. Running time: O(n^2)
+Explanation: There is a single loop that runs n*n times. Each time the loop runs, it executes 1 instruction, so the total number of instructions executed is n*n = O(n^2).
+
+7. Running time: O(n^3)
+Explanation: There is a loop that runs n*n times within a loop that runs n times. Since it executes 1 instruction every time the loops run, the total number of instructions executed is n*(n*n) = O(n^3).
+
+8. Running time: O(n)
+Explanation: There is a loop that runs 10000 times within another loop that runs n times. Since one instruction is executed every time a loop runs, the total number of instructions executed is 10000n = O(n).
+
+Part 2
+1. Running time: Ω(n^2)
+Explanation: To make a copy of the list, the system has to instantiate a new list, loop through each node of the old list, and copy the element in each node to the new list. The total number of instructions would be about 10(n^2) + 5 = Ω(n^2).
+
+2. Running time: Ω(1)
+Explanation: Since the list is a doubly-linked list, the system will use few steps to see whether or not it is more efficient to start from the beginning or the end. Then it uses a few more steps in order to add a value to the end of the list. However, it never loops through the list, so the total number of instructions would be about 10 = Ω(1).
+
+3. Running time: Ω(1)
+Explanation: Since the list is a doubly-linked list, the system will use few steps to see whether or not it is more efficient to start from the beginning or the end. The system will use a few steps to set the references to new references so that it can remove the first value from the list. However, it never loops through the list, so the total number of instructions would be about 10 = Ω(1).
+
+4. Running time: Ω(1)
+Explanation: Since the list is a doubly-linked list, the system will use few steps to see whether or not it is more efficient to start from the beginning or the end. The system will use a few steps to set the references to new references so that it can remove the last value from the list. However, it never loops through the list, so the total number of instructions would be about 10 = Ω(1).
+
+5. Running time: Ω(n)
+Explanation: In the worse case possible, assume that the value V is in the node that is farthest from the end or beginning, so it is in the middle of the list. The system will also use some instructions to determine whether the node has the value V for each case. Some instructions are also required to start the code, so the total number of instructions would be about (1/2)n + (1/2)n + 10 = Ω(n).
+
+Part 3
+Question 1: 
+A. wc medium-wordlist.txt 
+> 119805  119805 1146872 medium-wordlist.txt
+The middle number of the output, which is 119805, gives the number of words.
+B.
+main()	doLoops(MyLinkedList, wordlist, input file, loop bounds and steps)
+		for(i < steps, r < reps)
+		doWork(storage, wordlist, input file, number of words)
+			opens document
+			start timer
+			loops through the words
+			adds words to good or bad respectively.
+			stop timer and adds time to total time.
+			returns long totalTime
+		prints out runtime(totalTime/reps) in a table.
+		increments numwords	
+	doLoops(MRUList, <same parameters as previous call)		<same call outline as above, detail is not needed>
+C. The class HashSet is defined in java.util.*. HashSet implements the interface Collection<E>. I think that good is different from goodwords.size() because good keeps track of how many good words there are in total, but good words.size() counts how many unique good words there are.
+
+D. Yes, I think it does make a small difference to the overall performance because some values can be found earlier depending on the contents of the wordlist. It can make a difference if the search algorithm is something other than linear search. For example, the system can use the binary search algorithm, which needs a sorted list, in order to find a certain word and binary search runs faster than linear search.
+
+Question 2:
+Wordlist: small-wordlist.txt  Document: pride-and-prejudice.txt
+Class: MyLinkedList
+=======================================
+  1:    5000 words in     822 milliseconds
+  2:   10000 words in     952 milliseconds
+  3:   15000 words in    1167 milliseconds
+  4:   20000 words in    1914 milliseconds
+  5:   25000 words in    2153 milliseconds
+
+Wordlist: small-wordlist.txt  Document: pride-and-prejudice.txt
+Class: MRUList
+=======================================
+  1:    5000 words in     528 milliseconds
+  2:   10000 words in    1128 milliseconds
+  3:   15000 words in    1375 milliseconds
+  4:   20000 words in    1417 milliseconds
+  5:   25000 words in    1358 milliseconds
+
+Question 3: It seems to hold true for MyLinkedList because you can see that the time doubles when it scans 10000 words and 20000 words. However, it does not hold true for MRUList when it scans 10000 words and 20000 words. I think this is the case because the second 10000 words use similar vocabulary to the first 10000 words, so the words that are used are processed quicker.
+
+Question 4: 
+Wordlist: medium-wordlist.txt  Document: pride-and-prejudice.txt
+Class: MyLinkedList
+=======================================
+  1:    5000 words in   15447 milliseconds
+  2:   10000 words in   42881 milliseconds
+  3:   15000 words in   87491 milliseconds
+  4:   20000 words in  127892 milliseconds
+  5:   25000 words in  144394 milliseconds
+
+Wordlist: medium-wordlist.txt  Document: pride-and-prejudice.txt
+Class: MRUList
+=======================================
+  1:    5000 words in    7238 milliseconds
+  2:   10000 words in   13205 milliseconds
+  3:   15000 words in   15623 milliseconds
+  4:   20000 words in   21049 milliseconds
+  5:   25000 words in   18660 milliseconds
+
+The performance of each type of list is worse because it takes much longer to scan. It takes longer to run because there are more words in the wordlist, so it takes much longer to scan through every word in pride-and-prejudice.txt. 
+
+Question 5:
+Wordlist: pride-and-prejudice.txt  Document: pride-and-prejudice.txt
+Class: MyLinkedList
+=======================================
+  1:    5000 words in     224 milliseconds
+  2:   10000 words in     522 milliseconds
+  3:   15000 words in    1431 milliseconds
+  4:   20000 words in    1441 milliseconds
+  5:   25000 words in    3136 milliseconds
+
+Wordlist: pride-and-prejudice.txt  Document: pride-and-prejudice.txt
+Class: MRUList
+=======================================
+  1:    5000 words in    2587 milliseconds
+  2:   10000 words in    5421 milliseconds
+  3:   15000 words in    6765 milliseconds
+  4:   20000 words in    8911 milliseconds
+  5:   25000 words in   13941 milliseconds
+
+The running time is much faster in MyLinkedList than it is in MRUList. This is because the words are already in order since the wordlist and the document are the same so it takes less time to go through the documents with MyLinkedList. In MRUList, the words that are used, which are unlikely to be used again, are placed in front, slowing down the search process. 

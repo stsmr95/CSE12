@@ -1,0 +1,57 @@
+CSE 12 Homework 6
+Son TangA11370127Section [B00]
+May 15, 2014
+
+Part I.
+I. Heap
+ A. java -Xint SortTimer2 random-strings.txt 4
+Document: random-strings.txt
+	    sortAlg: 4
+	   =======================================
+	    1:    5000 words in     240 milliseconds
+ 	    2:   10000 words in     583 milliseconds
+ 	    3:   15000 words in     920 milliseconds
+ 	    4:   20000 words in    1156 milliseconds
+ 	    5:   25000 words in    1442 milliseconds
+ B. O(n). The increase in time at each point is fairly linear. It increases by about 200-300 each time it increments.
+
+II. Insertion
+ A. java -Xint SortTimer2 random-strings.txt 1
+Document: random-strings.txt
+ 	 sortAlg: 1
+	=======================================
+ 	 1:    5000 words in      74 milliseconds
+  	 2:   10000 words in     193 milliseconds
+  	 3:   15000 words in     270 milliseconds
+  	 4:   20000 words in     359 milliseconds
+  	 5:   25000 words in     486 milliseconds
+ B. O(n). The increase in time rises linearly, increasing by ~80 ms each time.
+
+
+Part II.
+I. Heap
+ A. java -Xint SortTimer2 random-strings-sorted.txt  4
+Document: random-strings-sorted.txt
+	 sortAlg: 4
+	=======================================
+ 	 1:    5000 words in     228 milliseconds
+ 	 2:   10000 words in     460 milliseconds
+ 	 3:   15000 words in     735 milliseconds
+ 	 4:   20000 words in    1114 milliseconds
+	 5:   25000 words in    1559 milliseconds
+ B.O(n^2). The time increase increases every time it increments: it increases ~200 the first time, ~300 the second time, and ~400 the third time.
+
+II. Insertion
+ A. java -Xint SortTimer random-strings-sorted.txt 1
+Document: random-strings-sorted.txt
+	 sortAlg: 1
+	=======================================
+	  1:    5000 words in      14 milliseconds
+	  2:   10000 words in      30 milliseconds
+	  3:   15000 words in      49 milliseconds
+	  4:   20000 words in      60 milliseconds
+	  5:   25000 words in      74 milliseconds
+ B. O(n). The increase in time at every point is relatively linear with ~15 ms increase.
+ 
+
+Part III. They are different because the modified insertion sort runs generally faster than heap sort. Heap sort takes longer at the start and increases more than the insertion sort at each increment.

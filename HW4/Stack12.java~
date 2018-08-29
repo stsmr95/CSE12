@@ -1,0 +1,12 @@
+/** NAME: Son Tang
+  * ID: A11370127
+  * LOGIN: cs12shb
+  * 
+  * Description: A class that implements the BoundedDeque interface.
+  * */
+import java.util.*;
+
+public class Stack12<E> implements BoundedDeque<E>
+{ 
+  Deque12<E> baseArr = new Deque12<E>
+}

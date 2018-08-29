@@ -1,0 +1,15 @@
+Q:Is it bigger than a breadbox?
+Q:Is it blue?
+A:spam
+A:a blueberry
+A:a computer scientist
+
+
+Your final game tree was: 
+0: 'Is it bigger than a breadbox?' no:(1) yes:(2)
+1: 'Is it sweet?' no:(3) yes:(4)
+3: 'spam' no:(null) yes:(null)
+4: 'Is it hard?' no:(9) yes:(10)
+9: 'soda' no:(null) yes:(null)
+10: 'It is candy.' no:(null) yes:(null)
+2: 'a computer scientist' no:(null) yes:(null)

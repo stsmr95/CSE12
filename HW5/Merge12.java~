@@ -1,0 +1,127 @@
+import java.lang.Comparable;
+import java.util.List;
+import java.util.ArrayList;
+import java.lang.*;
+public class Merge12 implements Sort12
+{
+  public  <T extends Comparable<? super T>> void  sort(List<T> list)
+  {
+    if ( list == null )
+      throw new NullPointerException("Null argument to sort");
+    
+    // Create the arrayList to insert into
+    ArrayList<T> inputArray = new ArrayList<T>(list.size());
+    ArrayList<T> tempArray = new ArrayList<T>(list.size()/2);
+    
+    for(int i = 0; i < list.size(); i++)
+    {
+      inputArray.add(list.get(i));
+    }
+    for(int i = 0; i < list.size()/2; i++)
+    {
+      tempArray.add(list.get(i));
+    }
+
+    internalMergeSort(inputArray, tempArray, 0, list.size());
+    for(int i = 0; i < list.size(); i++)
+    {
+      list.set(i, inputArray.get(i));
+    } 
+  } //sort
+  
+ 
+  private  <T extends Comparable<? super T>> void 
+    internalMergeSort(ArrayList<T> inputArray, ArrayList<T> tempArray,
+                      int first, int last)
+  {
+    
+    if(first >= last)
+    {
+      return;
+    }
+    else
+    {
+      int middle = first + (last - first)/2;                               //sets middle index.
+      //System.out.println(middle);
+      internalMergeSort(inputArray,tempArray,first,middle );        //splits first half of array.
+      internalMergeSort(inputArray,tempArray,middle + 1, last);    //splits second half of array.
+      merge(inputArray,tempArray,first,middle,last);
+      System.out.println(first + " " + middle + " " + last);
+            System.out.println("---------------");
+     for(int i = 0; i < inputArray.size(); i++)
+    {
+      System.out.println(inputArray.get(i));
+    } 
+    }
+  } // internalMergeSort
+  
+  
+  private  <T extends Comparable<? super T>> void 
+    merge(ArrayList<T> inputArray, ArrayList<T> tempArray,
+          int first, int mid, int last)
+  {
+    int tempIndex = 0;
+    for(int i = first; i < mid; i++)                              //Copy first half into tempArray.
+    {
+      tempArray.set(tempIndex, inputArray.get(i));
+      tempIndex++;
+    } 
+    
+    int i = first;                                                //main index
+    int o = first;                                                //first index for first half.
+    int u = mid + 1;                                                  //first index for last half.
+    int tempCounter = 0;
+    while(o < mid || u < last)
+    {
+      if(o > mid - 1)                                                //if first half is done.
+      {
+        inputArray.set(i, inputArray.get(u));
+        u++;
+      }
+      else if(u > last - 1)                                          //if second half is done.
+      {
+        inputArray.set(i, tempArray.get(o));
+        o++;
+        tempCounter++;
+      }
+      
+      else if(inputArray.get(u).compareTo(tempArray.get(o)) > 0)  //if element in second half 
+      {                                                           //is greater than first half.
+        inputArray.set(i, inputArray.get(u));
+        u++;
+      }
+      else                                                        //if element in first half
+      {                                                           //is greater than second half.
+        inputArray.set(i, tempArray.get(o));
+        o++;
+        tempCounter++;
+      }
+      i++;
+    }
+    
+  } // merge
+  
+  
+  public static void main(String[] args)
+  {
+    ArrayList<Integer> list = new ArrayList<Integer>();
+    list.add(new Integer(0));
+    list.add(new Integer(3));
+    list.add(new Integer(2));
+    list.add(new Integer(5));
+    list.add(new Integer(1));
+    list.add(new Integer(4));
+    list.add(new Integer(9));    
+    list.add(new Integer(7));   
+    list.add(new Integer(8));
+    System.out.println("Size of Array is " + String.valueOf(list.size()));
+    Merge12 merger = new Merge12();
+    merger.sort(list);
+    System.out.println("Values of Array:");
+    for(int i = 0; i<list.size(); i++)
+    {
+      System.out.println(String.valueOf(list.get(i)));
+    }
+  }
+}
+// vim:ts=4:sw=4:sw=78

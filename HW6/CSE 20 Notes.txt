@@ -1,0 +1,56 @@
+In a party there are 2n people. They shake hand with each other such that there is no triangle.
+ex. A shakes hands with B and B shakes hand with C, then A does not shake hand with C.
+Prove that number of hand shakes <= n^2.
+
+n=1  	o———o		# of handshakes <= 1 = 1^2
+n=2     o—-—o	o———o 	# of handshakes = 4 = 2^2
+          X	|   |
+        o——-o   o———o
+
+BC	n=1     
+IH	Let for some k, P(k) is true.
+IS	WTS P(k+1) is true.
+	2(k+1) = 2k + 2
+	WTS number of handshake <= (k+1)^2
+
+Alice ———— Bob
+|\\\\\\//////|
+o oooooooooo o }2k
+   a(k) b(k)
+
+Number of total handshakes <= 1 + a + b + k^2
+			   <= 1 + 2k + k^2 = (k+1)^2
+
+
+Final Review Session Saturday 2-6 PM, CENTER 105
+1. No Calculators
+2. No Cheat Sheets
+
+1. Logic
+  - Propositional
+  - Predicate Logic
+2. Notation
+  - Number Theory
+  - Sets
+  - Functions
+3. Proof Techniques
+  - Direct Proof
+  - Contradiction
+  - Contrapositive
+  - Induction
+
+For all n >= p(n) ———— Induction
+A => B Prove by contradiction ~B && A => F
+
+
+
+
+
+To prove statement B from A:
+Direct Proof: A => B
+Proof by Contradiction: ~B && A
+Proof by Contrapositive: ~B => ~A
+
+
+62.5
+87.5

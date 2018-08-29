@@ -1,0 +1,119 @@
+Part I.
+I. Heap
+ A. java -Xint SortTimer2 random-strings.txt 4
+Document: random-strings.txt
+	    sortAlg: 4
+	   =======================================
+	    1:    5000 words in     240 milliseconds
+ 	    2:   10000 words in     583 milliseconds
+ 	    3:   15000 words in     920 milliseconds
+ 	    4:   20000 words in    1156 milliseconds
+ 	    5:   25000 words in    1442 milliseconds
+ B. O(n). The increase in time at each point is fairly linear. It increases by about 200-300 each time it increments.
+
+II. Insertion
+ A. java -Xint SortTimer2 random-strings.txt 0 1000 500 5
+Document: random-strings.txt
+	 sortAlg: 0
+	=======================================
+	 1:    1000 words in     928 milliseconds
+  	 2:    1500 words in    2072 milliseconds
+ 	 3:    2000 words in    3759 milliseconds
+ 	 4:    2500 words in    5897 milliseconds
+ 	 5:    3000 words in    8469 milliseconds
+ B.O(n^2). The increase in time rises exponentially each time it increments. It can be seen in all of the points— increasing by 1000, 2000, and then 3000.
+
+ A. java -Xint SortTimer2 random-strings.txt 1
+Document: random-strings.txt
+ 	 sortAlg: 1
+	=======================================
+ 	 1:    5000 words in      74 milliseconds
+  	 2:   10000 words in     193 milliseconds
+  	 3:   15000 words in     270 milliseconds
+  	 4:   20000 words in     359 milliseconds
+  	 5:   25000 words in     486 milliseconds
+ B. O(n). The increase in time rises linearly, increasing by ~80 ms each time.
+
+ A. java -Xint SortTimer2 random-strings.txt 2
+Document: random-strings.txt
+	 sortAlg: 2
+	=======================================
+  	 1:    5000 words in     162 milliseconds
+  	 2:   10000 words in     417 milliseconds
+  	 3:   15000 words in     561 milliseconds
+  	 4:   20000 words in     759 milliseconds
+  	 5:   25000 words in     963 milliseconds
+ B. O(n). At almost any point, the time increase is consistently ~300 ms.
+
+ A. java -Xint SortTimer2 random-strings.txt 3
+Document: random-strings.txt
+ 	 sortAlg: 3
+	=======================================
+  	 1:    5000 words in      94 milliseconds
+  	 2:   10000 words in     205 milliseconds
+  	 3:   15000 words in     344 milliseconds
+  	 4:   20000 words in     551 milliseconds
+  	 5:   25000 words in     550 milliseconds
+ B. O(n). In the middle three points, the increase in time is relatively linear.
+
+
+Part II.
+I. Heap
+ A. java -Xint SortTimer2 random-strings-sorted.txt  4
+Document: random-strings-sorted.txt
+	 sortAlg: 4
+	=======================================
+ 	 1:    5000 words in     228 milliseconds
+ 	 2:   10000 words in     460 milliseconds
+ 	 3:   15000 words in     735 milliseconds
+ 	 4:   20000 words in    1114 milliseconds
+	 5:   25000 words in    1559 milliseconds
+ B.O(n^2). The time increase increases every time it increments: it increases ~200 the first time, ~300 the second time, and ~400 the third time.
+
+II. Insertion
+ A. java -Xint SortTimer2 random-strings-sorted.txt 0
+Document: random-strings-sorted.txt
+	 sortAlg: 0
+	=======================================
+ 	 1:    5000 words in       6 milliseconds
+ 	 2:   10000 words in      12 milliseconds
+ 	 3:   15000 words in      18 milliseconds
+ 	 4:   20000 words in      24 milliseconds
+ 	 5:   25000 words in      31 milliseconds
+ B. O(n). The increase in time is a flat 6 ms each time.
+ 
+ A. java -Xint SortTimer random-strings-sorted.txt 1
+Document: random-strings-sorted.txt
+	 sortAlg: 1
+	=======================================
+	  1:    5000 words in      14 milliseconds
+	  2:   10000 words in      30 milliseconds
+	  3:   15000 words in      49 milliseconds
+	  4:   20000 words in      60 milliseconds
+	  5:   25000 words in      74 milliseconds
+ B. O(n). The increase in time at every point is relatively linear with ~15 ms increase.
+ 
+ A. java -Xint SortTimer random-strings-sorted.txt 2
+Document: random-strings-sorted.txt
+	 sortAlg: 2
+	=======================================
+	  1:    5000 words in     136 milliseconds
+	  2:   10000 words in     292 milliseconds
+	  3:   15000 words in     516 milliseconds
+	  4:   20000 words in     630 milliseconds
+	  5:   25000 words in     834 milliseconds
+ B. O(n). The time increase is inconsistent, but is fairly linear.
+
+ A. java -Xint SortTimer random-strings-sorted.txt 3 1000 500 5
+Document: random-strings-sorted.txt
+	 sortAlg: 3
+	=======================================
+	  1:    1000 words in     437 milliseconds
+	  2:    1500 words in     874 milliseconds
+	  3:    2000 words in    1617 milliseconds
+	  4:    2500 words in    2512 milliseconds
+	  5:    3000 words in    3677 milliseconds
+ B. O(n^2). In all five points, the time increase is exponential, increasing form 400ms/500 words to over 1000ms/500 words.
+
+
+Part III.

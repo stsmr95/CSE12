@@ -1,0 +1,19 @@
+public class Queue12<E> implements BoundedQueue<E> 
+{
+  private Deque12<E> baseArr;
+  
+  /**
+   * Constructs a new Queue12 object that implements BoundedQueue.
+   * Requires the capacity of the number of objects that the list can hold.
+   * Parameter cannot be negative or throws IllegalArgumentException.
+   * @param input the number of objects that the list can hold.
+   */
+  public Queue12(int input) throws IllegalArgumentException
+  {
+    if(input < 0)
+    {
+      throw new IllegalArgumentException();
+    }
+    baseArr = new Deque12<E>(input);
+  }
+}

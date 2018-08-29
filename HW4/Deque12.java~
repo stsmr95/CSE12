@@ -1,0 +1,106 @@
+/** NAME: Son Tang
+  * ID: A11370127
+  * LOGIN: cs12shb
+  * 
+  * Description: ---
+  * */
+import java.util.*;
+
+public class Deque12<E> implements BoundedDeque<E>
+{ 
+  private int capacity;
+  private int dSize;
+  private ArrayList<E> dArray;
+  private int head;
+  private int tail;
+  
+  public Deque12(int cap) 
+  {
+    if(cap < 0)
+    {
+      throw new IllegalArgumentException();
+    }
+    capacity = cap;
+    dSize = 0;
+    dArray = new ArrayList<E>(cap);
+    for(int i = 0; i <= cap; i++)
+    {
+      dArray.add(i,null);
+    }
+    head = 0;
+    tail = cap;
+  }
+  
+  public int capacity()
+  {
+    return capacity;
+  }
+  public int size()
+  {
+    return dSize;
+  }
+  public boolean addFront(E e) throws NullPointerException
+  {
+    if(e == null)
+    {
+      throw new NullPointerException();
+    }
+    if(dSize < capacity)
+    {
+      dArray.set(head,e);
+      head++;
+      if(head > capacity)
+      {
+        head = 0;
+      }
+      dSize++;
+      return true;
+    }
+    return false;
+  }
+  public boolean addBack(E e) throws NullPointerException
+  {
+    if(e == null)
+    {
+      throw new NullPointerException();
+    }
+    if(dSize < capacity)
+    {
+    dArray.set(tail,e);
+    tail--;
+    if(tail < 0)
+    {
+      tail = capacity;
+    }
+    dSize++;
+    return true;
+    }
+    return false;
+  }
+  public E removeFront()
+  {
+    return null;
+  }
+  public E removeBack()
+  {
+    return null;
+  }
+  public E peekFront()
+  {
+    int retValue = head - 1;
+    if(retValue < 0)
+    {
+      retValue = capacity;
+    }
+    return dArray.get(retValue);
+  }
+  public E peekBack()
+  {
+    int retValue = tail + 1;
+    if(retValue > capacity)
+    {
+      retValue = 0;
+    }
+    return dArray.get(retValue);
+  }
+}
